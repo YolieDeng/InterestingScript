@@ -9,9 +9,8 @@ from openpyxl import load_workbook
 def find_and_write_matched_data(dir_path):
     os.chdir(dir_path)
     files = os.listdir()
-    pattern = re.compile(r'\d*404\d*')  # 正则表达式，匹配学号数据
+    pattern = re.compile(r'\d*404\d*')  # 正则表达式，匹配学号数据(此处可根据个人情况进行修改)
     matched_data = []
-    # 遍历文件列表，对匹配到的文件名提取匹配数据，并存储到 matched_data 列表中
     for file in files:
         match = pattern.search(file)
         if match:
@@ -26,7 +25,7 @@ def target_student():
         wb = load_workbook(filename='此处填入学号姓名文件路径.xlsx')
         sheet = wb['Sheet1']
         column_data = []
-        for row in sheet.iter_rows(values_only=True):  # 迭代读取指定列的数据
+        for row in sheet.iter_rows(values_only=True):
             column_data.append(row[1])
         return column_data
     except Exception as e:

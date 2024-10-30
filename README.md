@@ -3,5 +3,8 @@
  * @Date: 2024-10-30 10:56:20
 -->
 # By DengYh
-# InterestingScript
-Some interesting Python scripts
+# 一些有趣的python脚本
+
+1. AutomatedComparison  自动化文件比对工具
+> 说明：帮助教师或学生快速检查文件中学生信息的完整性。通过提取文件夹中的文件名（包含学号和姓名），并与桌面上的Excel表格中的数据进行比对，找出缺失的学号和姓名，大量节省了人工检查的时间。
+
