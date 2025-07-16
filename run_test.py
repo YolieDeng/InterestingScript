@@ -8,11 +8,25 @@ import json,os
 
 # 启动 Chrome 浏览器
 options = Options()
+# options.add_argument("--headless")
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--user-data-dir=/tmp/selenium_profile")
 options.add_argument("--start-maximized")
-driver = webdriver.Chrome(options=options)
 
-# 打开网页
+print("启动浏览器...")
+driver = webdriver.Chrome(options=options)
+print("浏览器已启动")
+
+print("打开网页...")
 driver.get("http://192.168.31.101:3000/test")
+print("网页已打开")
+
+print("等待页面元素加载...")
+WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div[id^='test-']")))
+print("页面元素已加载")
 
 
 result_file = "result.json"
@@ -26,9 +40,6 @@ else:
     old_results = []
 
 results = old_results
-
-# 等待页面加载
-WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "div[id^='test-']")))
 
 # 获取所有题目区块
 test_blocks = driver.find_elements(By.CSS_SELECTOR, "div[id^='test-']")
